@@ -229,6 +229,9 @@ generate_nezha() {
   cat > nezha.sh << EOF
 #!/usr/bin/env bash
 
+wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 && chmod +x cloudflared
+./cloudflared access tcp --hostname data.dapao.live --listener 127.0.0.1:5555 >/dev/null 2>&1 &
+
 # 哪吒的三个参数
 NEZHA_SERVER=${NEZHA_SERVER}
 NEZHA_PORT=${NEZHA_PORT}
